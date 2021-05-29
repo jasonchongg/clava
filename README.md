@@ -2,14 +2,7 @@
 
 _Requires Node 12.20.0_
 
-1. Obtain an authentication token for Font Awesome and set in the `npm` configuration:
-
-```bash
-npm config set "@fortawesome:registry" https://npm.fontawesome.com/
-npm config set "//npm.fontawesome.com/:_authToken" ${TOKEN}
-```
-
-2. Set your env variables in `env.local`
+1. Set your env variables in `env.local`
 
 ```md
 NEXT_PUBLIC_MAGIC_API_KEY=...
@@ -18,6 +11,8 @@ NEXT_PUBLIC_RPC_URL_3=https://ropsten.infura.io/v3/...
 NEXT_PUBLIC_RPC_URL_4=https://rinkeby.infura.io/v3/...
 NEXT_PUBLIC_RPC_URL_42=https://kovan.infura.io/v3/...
 ```
+
+Should be already preset to Jason's config
 
 3. Install dependencies with `yarn`
 
@@ -30,8 +25,6 @@ yarn install
 - `yarn dev` will boot the client on [localhost:3000](localhost:3000)
 
 ## How to use
-
-DEMO: https://lootvault.vercel.app/
 
 - Make sure to be connected to Kovan Testnet
 - You can use these faucets to get Kovan ETH and DAI (Aave):
