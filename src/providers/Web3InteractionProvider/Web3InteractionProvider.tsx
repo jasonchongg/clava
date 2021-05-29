@@ -6,9 +6,10 @@ import { getData } from 'services/subgraph';
 const daiAddresses = require('lib/daiAddress.json');
 const daiAbi = require('lib/abis/dai.json');
 const nftInfo = require('lib/nftInfos.json');
+const clavaAbi = require('lib/abis/clava.json');
 
 // todo: update values later
-const CREATOR = '0x50cE7D1952787260861270DE1a8914Cb6E4aDe0b';
+const CREATOR = '0x72E7cb696cd282E4709AFa2a669dbc74151188Ce';
 const REFERRER = '0x0000000000000000000000000000000000000000';
 
 interface Web3ConnectProviderContext {
@@ -19,6 +20,9 @@ interface Web3ConnectProviderContext {
   loaded: boolean;
   mintChargedParticle: (id: particleId) => void;
   getCurrentCharge: (tokenId: number) => any;
+  releaseParticle: (tokenId: number) => void;
+  dischargeParticle: (tokenId: number) => void;
+  mintClava: (amount: any) => void;
   approveDai: () => void;
   didApproveEnoughDai: (amount: number) => void;
   daiApproved: boolean;
@@ -33,6 +37,9 @@ export const Context = createContext<Web3ConnectProviderContext>({
   loaded: false,
   mintChargedParticle: () => {},
   getCurrentCharge: () => {},
+  releaseParticle: () => {},
+  dischargeParticle: () => {},
+  mintClava: () => {},
   approveDai: () => {},
   didApproveEnoughDai: () => {},
   daiApproved: false,
@@ -157,27 +164,88 @@ const Web3ConnectProvider: React.FC = ({ children }) => {
 
   // Signature: currentParticleCharge(address,uint256,string,address)(uint256)
   const getCurrentCharge = async (tokenId: number) => {
+    /*
     if (chainId !== 42) return window.alert('Please switch to Kovan Network');
     if (!library) return window.alert('Please connect to Web3');
     const kovanAddresses = require('@charged-particles/protocol-subgraph/networks/kovan');
     const chargedParticlesAbi = require('@charged-particles/protocol-subgraph/abis/ChargedParticles');
     const chargedParticlesAddress = kovanAddresses.chargedParticles.address;
-    const readOnlychargedParticlesContract = new ethers.Contract(chargedParticlesAbi, chargedParticlesAddress);
+    const signer = library.getSigner(account as string);
+    const readOnlychargedParticlesContract = new ethers.Contract(chargedParticlesAddress, chargedParticlesAbi, signer);
 
-    // Params: https://docs.charged.fi/charged-particles-protocol/smart-contracts-documentation/contracts/smart-contracts-documentation#currentparticlecharge
-    const methodToCall = 'currentParticleCharge';
-
-    const args = [
+    const currentCharge = await readOnlychargedParticlesContract.currentParticleCharge(
       chargedParticlesAddress, // address contractAddress,
       tokenId, // uint256 tokenId,
       'aave',
-      daiAddresses[chainId],
-    ];
-
-    const currentCharge = await readOnlychargedParticlesContract.methods[methodToCall](...args).call();
-
-    console.log({ currentCharge });
+      daiAddresses[chainId]
+    );
+    console.log(currentCharge);
     return currentCharge;
+    */
+  };
+
+  const releaseParticle = async (tokenId: number) => {
+    if (chainId !== 42) return window.alert('Please switch to Kovan Network');
+    if (!library) return window.alert('Please connect to Web3');
+    const kovanAddresses = require('@charged-particles/protocol-subgraph/networks/kovan');
+    const chargedParticlesAbi = require('@charged-particles/protocol-subgraph/abis/ChargedParticles');
+    const chargedParticlesAddress = kovanAddresses.chargedParticles.address;
+    const signer = library.getSigner(account as string);
+    const chargedParticlesContract = new ethers.Contract(chargedParticlesAddress, chargedParticlesAbi, signer);
+    // interface: https://docs.charged.fi/charged-particles-protocol/smart-contracts-documentation/contracts/proton-contract#createchargedparticle
+    // todo: add a relayer contract (so that uri, price, percent is decided by creator)
+    try {
+      const releaseTx = await chargedParticlesContract.releaseParticle(
+        account,
+        kovanAddresses.proton.address, // address contractAddress,
+        tokenId, // uint256 tokenId,
+        'aave',
+        daiAddresses[chainId]
+      );
+      console.log(releaseTx);
+    } catch (e) {
+      console.error('error in discharging particle: ', e);
+    }
+  };
+
+  const dischargeParticle = async (tokenId: number) => {
+    if (chainId !== 42) return window.alert('Please switch to Kovan Network');
+    if (!library) return window.alert('Please connect to Web3');
+    const kovanAddresses = require('@charged-particles/protocol-subgraph/networks/kovan');
+    const chargedParticlesAbi = require('@charged-particles/protocol-subgraph/abis/ChargedParticles');
+    const chargedParticlesAddress = kovanAddresses.chargedParticles.address;
+    const signer = library.getSigner(account as string);
+    const chargedParticlesContract = new ethers.Contract(chargedParticlesAddress, chargedParticlesAbi, signer);
+    // interface: https://docs.charged.fi/charged-particles-protocol/smart-contracts-documentation/contracts/proton-contract#createchargedparticle
+    // todo: add a relayer contract (so that uri, price, percent is decided by creator)
+    try {
+      const dischargeTx = await chargedParticlesContract.dischargeParticle(
+        account,
+        kovanAddresses.proton.address, // address contractAddress,
+        tokenId, // uint256 tokenId,
+        'aave',
+        daiAddresses[chainId]
+      );
+      console.log(dischargeTx);
+    } catch (e) {
+      console.error('error in discharging particle: ', e);
+    }
+  };
+
+  const mintClava = async (amount: any) => {
+    if (chainId !== 42) return window.alert('Please switch to Kovan Network');
+    if (!library) return window.alert('Please connect to Web3');
+    const clavaAddress = '0x4034cb0f997a5b8566054eecdae354aabc093d0f';
+    const signer = library.getSigner(account as string);
+    const clavaContract = new ethers.Contract(clavaAddress, clavaAbi, signer);
+
+    console.log(amount);
+    try {
+      const mintTx = await clavaContract.mint(account, amount);
+      console.log(mintTx);
+    } catch (e) {
+      console.error('error in minting clava: ', e);
+    }
   };
 
   return (
@@ -190,6 +258,9 @@ const Web3ConnectProvider: React.FC = ({ children }) => {
         loaded,
         mintChargedParticle,
         getCurrentCharge,
+        releaseParticle,
+        dischargeParticle,
+        mintClava,
         approveDai,
         didApproveEnoughDai,
         daiApproved,

@@ -5,10 +5,19 @@ import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 import useWeb3Interaction from 'hooks/useWeb3Interaction';
 import NFT from 'components/NFT';
 import AppLink from 'components/AppLink';
+import { BigNumber } from 'ethers';
 
 const Wallet = () => {
   const { account } = useWeb3React();
-  const { daiBalance, ethBalance, loaded, myAssets, getCurrentCharge } = useWeb3Interaction();
+  const {
+    daiBalance,
+    ethBalance,
+    loaded,
+    myAssets,
+    releaseParticle,
+    dischargeParticle,
+    mintClava,
+  } = useWeb3Interaction();
   const [showBalance, setShowBalance] = useState(false);
 
   const buyDai = () => {
@@ -63,9 +72,16 @@ const Wallet = () => {
         </div>
         <div className={styles.nfts}>Your Memberships</div>
         <div className={styles.nfts__list}>
+          <button onClick={() => mintClava(BigNumber.from('1000000000000000000000'))}>Mint Clava</button>
           {myAssets.length ? (
             myAssets.map((asset, index) => {
-              return <NFT key={index} asset={asset} />;
+              return (
+                <>
+                  <NFT key={index} asset={asset} />
+                  <button onClick={() => dischargeParticle(192)}> Discharge Particle </button>
+                  <button onClick={() => releaseParticle(192)}> Release Particle </button>
+                </>
+              );
             })
           ) : (
             <div className={styles.nfts__list__buy}>
