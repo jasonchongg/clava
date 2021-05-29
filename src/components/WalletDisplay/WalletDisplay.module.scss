@@ -1,0 +1,46 @@
+@import 'styles/_variables.scss';
+
+.button {
+  @extend %btn-primary;
+}
+
+.container {
+  margin-top: 1rem;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+
+  button {
+    @extend %btn-primary;
+  }
+}
+
+.input {
+  &__header {
+    font-weight: 500;
+    padding: 2rem 0 1rem;
+  }
+  &__wrapper {
+    display: flex;
+
+    input {
+      margin-right: 1rem;
+      @extend %input-field;
+    }
+    button {
+      @extend %btn-primary;
+    }
+  }
+}
+
+.note {
+  @extend %row;
+  border: 1px solid $color-codgray;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  color: $color-yellowsin;
+  border-radius: 0.5rem;
+  svg {
+    margin-right: 1rem;
+  }
+}

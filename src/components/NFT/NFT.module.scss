@@ -1,0 +1,70 @@
+@import 'styles/_variables.scss';
+
+.asset {
+  @extend %row;
+  img {
+    height: 6rem;
+    width: auto;
+    border-radius: 1rem;
+    margin-right: 1rem;
+  }
+  &__info {
+    &__headline {
+      font-size: 1.15rem;
+      font-weight: 500;
+      padding-bottom: 1rem;
+    }
+    &__discription {
+      opacity: 0.8;
+      padding: 0.5rem 0 1rem;
+    }
+  }
+}
+
+.xp {
+  border-radius: 0.5rem;
+  position: relative;
+  height: 2rem;
+  width: 12rem;
+
+  &--0 {
+    background-color: lighten($color-spray, 15);
+    border: 1px solid $color-spray;
+  }
+  &--1 {
+    background-color: lighten($color-melrose, 10);
+    border: 1px solid $color-melrose;
+  }
+  &--2 {
+    background-color: lighten($color-yellowsin, 20);
+    border: 1px solid $color-yellowsin;
+  }
+  &__inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0.5rem;
+    height: 100%;
+    background-color: $color-yellowsin;
+    z-index: 2;
+    &--0 {
+      background-color: $color-spray;
+    }
+    &--1 {
+      background-color: $color-melrose;
+    }
+    &--2 {
+      background-color: darken($color-yellowsin, 5);
+    }
+  }
+  &__text {
+    color: black;
+    font-size: 0.9rem;
+    font-family: $font-mono;
+    position: absolute;
+    padding: 0.5rem 1rem;
+    top: 0;
+    left: 0;
+    z-index: 3;
+  }
+}
