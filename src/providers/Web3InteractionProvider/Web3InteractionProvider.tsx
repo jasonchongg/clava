@@ -74,6 +74,7 @@ const Web3ConnectProvider: React.FC = ({ children }) => {
   };
 
   const loadDaiBalance = async () => {
+    console.log(chainId);
     if (chainId && account) {
       setLoaded(false);
       const daiContract = new ethers.Contract(daiAddresses[chainId], daiAbi, library);
