@@ -164,24 +164,33 @@ const Web3ConnectProvider: React.FC = ({ children }) => {
 
   // Signature: currentParticleCharge(address,uint256,string,address)(uint256)
   const getCurrentCharge = async (tokenId: number) => {
-    /*
     if (chainId !== 42) return window.alert('Please switch to Kovan Network');
     if (!library) return window.alert('Please connect to Web3');
     const kovanAddresses = require('@charged-particles/protocol-subgraph/networks/kovan');
     const chargedParticlesAbi = require('@charged-particles/protocol-subgraph/abis/ChargedParticles');
     const chargedParticlesAddress = kovanAddresses.chargedParticles.address;
-    const signer = library.getSigner(account as string);
-    const readOnlychargedParticlesContract = new ethers.Contract(chargedParticlesAddress, chargedParticlesAbi, signer);
+    const protonAddress = kovanAddresses.proton.address;
 
-    const currentCharge = await readOnlychargedParticlesContract.currentParticleCharge(
-      chargedParticlesAddress, // address contractAddress,
-      tokenId, // uint256 tokenId,
+    const chargedParticlesContract = new ethers.Contract(
+      chargedParticlesAddress,
+      chargedParticlesAbi,
+      ethers.getDefaultProvider()
+    );
+    console.log(chargedParticlesContract);
+
+    // Signature: currentParticleCharge(address,uint256,string,address)(uint256)
+
+    // Params: https://docs.charged.fi/charged-particles-protocol/smart-contracts-documentation/contracts/smart-contracts-documentation#currentparticlecharge
+
+    const chargeTx = await chargedParticlesContract.currentParticleCharge(
+      protonAddress,
+      tokenId,
       'aave',
       daiAddresses[chainId]
     );
-    console.log(currentCharge);
-    return currentCharge;
-    */
+    console.log(chargeTx);
+
+    return { chargeTx };
   };
 
   const releaseParticle = async (tokenId: number) => {
@@ -235,7 +244,7 @@ const Web3ConnectProvider: React.FC = ({ children }) => {
   const mintClava = async (amount: any) => {
     if (chainId !== 42) return window.alert('Please switch to Kovan Network');
     if (!library) return window.alert('Please connect to Web3');
-    const clavaAddress = '0x4034cb0f997a5b8566054eecdae354aabc093d0f';
+    const clavaAddress = '0x5B38Da6a701c568545dCfcB03FcB875f56beddC4';
     const signer = library.getSigner(account as string);
     const clavaContract = new ethers.Contract(clavaAddress, clavaAbi, signer);
 

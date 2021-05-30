@@ -32,13 +32,9 @@ const Memberships = () => {
   };
 
   const renderSeeAll = () => {
-    return (
-      <AppLink href='/experiences' className={styles.placeholder}>
-        Show All Experiences
-      </AppLink>
-    );
+    return <button className={styles.placeholder}>Add New Experience</button>;
   };
-
+  1;
   return (
     <div>
       <div className={styles.headline}>Current Membership Tiers</div>
@@ -52,7 +48,7 @@ const Memberships = () => {
             </div>
             <div className={styles.perks}>
               <span>{MAX_SUPPLIES[index].toLocaleString()}</span>
-              <span>Max Supply</span>
+              <span>Memberships Sold</span>
             </div>
             <div className={styles.xp}>
               <div className={styles.xp__bars}>
@@ -60,9 +56,8 @@ const Memberships = () => {
                   <div className={cn([styles.xp__bar, [styles[`xp__bar--${index}`]]])} key={barIndex}></div>
                 ))}
               </div>
-              <span>{tier.xp.toLocaleString()} XP / month</span>
+              <span>{tier.xp.toLocaleString()} $ / month</span>
             </div>
-            <button onClick={() => handleBuy(tier.id as particleId)}>Buy Membership</button>
           </div>
         ))}
       </div>

@@ -16,6 +16,7 @@ const Wallet = () => {
     myAssets,
     releaseParticle,
     dischargeParticle,
+    getCurrentCharge,
     mintClava,
   } = useWeb3Interaction();
   const [showBalance, setShowBalance] = useState(false);
@@ -73,6 +74,8 @@ const Wallet = () => {
         <div className={styles.nfts}>Your Memberships</div>
         <div className={styles.nfts__list}>
           <button onClick={() => mintClava(BigNumber.from('1000000000000000000000'))}>Mint Clava</button>
+          <button onClick={() => getCurrentCharge(26)}>Get Current Charge</button>
+
           {myAssets.length ? (
             myAssets.map((asset, index) => {
               return (

@@ -1,0 +1,200 @@
+@import 'styles/_variables.scss';
+
+.headline {
+  padding: 2rem 0 1rem;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.tiers {
+  @extend %row;
+  justify-content: flex-start;
+  margin-top: 1rem;
+
+  &__tier + &__tier {
+    margin-left: 6rem;
+  }
+
+  &__tier {
+    width: 14rem;
+    p {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 0 0 rgba($color-melrose, 1);
+    }
+
+    &--0 {
+      p {
+        color: $color-spray;
+      }
+      img {
+        animation: pulseCommon 2s infinite;
+      }
+    }
+    &--2 {
+      p {
+        color: $color-yellowsin;
+      }
+      img {
+        animation: pulseLegen 2s infinite;
+      }
+    }
+    &--1 {
+      p {
+        color: $color-melrose;
+      }
+      img {
+        animation: pulseEpic 2s infinite;
+      }
+    }
+
+    &__footer {
+      @extend %row;
+      justify-content: space-between;
+    }
+
+    button {
+      margin: 2rem 0;
+      width: 100%;
+      @extend %btn-primary;
+    }
+  }
+}
+
+.perks {
+  @extend %row;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+  background-color: rgba($color-codgray, 0.5);
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-family: $font-mono;
+}
+
+.xp {
+  @extend %row;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  background-color: rgba($color-codgray, 0.5);
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  font-family: $font-mono;
+  span {
+    margin-left: 0.25rem;
+    font-size: 0.8rem;
+  }
+  &__bars {
+    @extend %row;
+  }
+  &__bar {
+    height: 0.7rem;
+    border-left: 3px solid $color-melrose;
+    margin-right: 0.25rem;
+    &--0 {
+      border-color: $color-spray;
+    }
+    &--2 {
+      border-color: $color-yellowsin;
+    }
+  }
+}
+
+.approve {
+  @extend %col;
+  margin-top: 1rem;
+  height: 100%;
+  button {
+    @extend %btn-primary;
+    margin-top: 2rem;
+  }
+}
+
+.experiences {
+  display: flex;
+  align-items: center;
+  &__experience + &__experience {
+    margin-left: 3rem;
+  }
+  &__experience {
+    background-color: lighten($color-mineshaft, 5);
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-right: 3rem;
+
+    img {
+      height: 9rem;
+      width: auto;
+      border-radius: 0.5rem;
+    }
+
+    &__title {
+      font-size: 0.9rem;
+      padding: 0.5rem 0;
+      font-weight: normal;
+    }
+    &__xp {
+      font-family: $font-mono;
+      font-size: 0.8rem;
+      font-weight: 300;
+      margin-top: 0.5rem;
+      background-color: rgba($color-codgray, 0.5);
+      padding: 0.5rem 0.75rem;
+      width: auto;
+      margin-right: 3rem;
+      border-radius: 0.5rem;
+    }
+  }
+}
+
+.placeholder {
+  margin-left: 2rem;
+  @extend %btn-secondary;
+}
+
+@keyframes pulseCommon {
+  0% {
+    box-shadow: 0 0 0 0 rgba($color-spray, 0.4);
+  }
+
+  40% {
+    box-shadow: 0 0 0 10px rgba($color-spray, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba($color-spray, 0);
+  }
+}
+@keyframes pulseLegen {
+  0% {
+    box-shadow: 0 0 0 0 rgba($color-yellowsin, 0.4);
+  }
+
+  60% {
+    box-shadow: 0 0 0 10px rgba($color-yellowsin, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba($color-yellowsin, 0);
+  }
+}
+@keyframes pulseEpic {
+  0% {
+    box-shadow: 0 0 0 0 rgba($color-melrose, 0.4);
+  }
+
+  80% {
+    box-shadow: 0 0 0 10px rgba($color-melrose, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba($color-melrose, 0);
+  }
+}

@@ -2,7 +2,7 @@
   "0": {
     "id": 0,
     "name": "Rare",
-    "image": "/images/member-0.gif",
+    "image": "/images/ccb1.png",
     "price": 50,
     "xp": 300,
     "uri": "https://ipfs.io/ipfs/QmePkzp5CeMrV1bTzUMCgGuXUweLXUoYsVKSCi2jbw2z4k"
@@ -10,7 +10,7 @@
   "1": {
     "id": 1,
     "name": "Super Rare",
-    "image": "/images/member-1.gif",
+    "image": "/images/ccb2.jpeg",
     "price": 200,
     "xp": 2000,
     "uri": "https://ipfs.io/ipfs/QmSWQLe6DFGm8EJ9VtJFH2QyUzi46RH7pDkuCoVQdhF5qT"

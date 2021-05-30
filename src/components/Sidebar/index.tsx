@@ -66,8 +66,8 @@ const Sidebar = () => {
       <div className={style.sidebar__inner}>
         <div className={style.sidebar__inner__top}>
           <div className={style.logo}>
-            <img src='/images/logo.png' />
-            <span>LootVault</span>
+            <img src='/images/Profile_Photo_1.png' />
+            <span>Klava</span>
           </div>
           <div className={style.links}>
             {MAIN_ROUTES.map(route => (
@@ -97,10 +97,6 @@ const Sidebar = () => {
           )}
           <div onClick={deactivate} className={cn(style.links__link, style.logout)}>
             Logout
-          </div>
-          <div className={style.creator}>
-            <img src='/images/waffle.png' />
-            <span>MrRoflWaffles</span>
           </div>
           {/* <AppLink
             className={cn([style.links__link, style.noOpacity])}
