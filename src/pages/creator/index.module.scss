@@ -51,6 +51,68 @@
   }
 }
 
+.tiers {
+  @extend %row;
+  justify-content: flex-start;
+  margin-top: 1rem;
+
+  &__tier + &__tier {
+    margin-left: 6rem;
+  }
+
+  &__tier {
+    width: 14rem;
+    p {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 0 0 rgba($color-melrose, 1);
+    }
+
+    &--0 {
+      p {
+        color: $color-spray;
+      }
+      img {
+        animation: pulseCommon 2s infinite;
+      }
+    }
+    &--2 {
+      p {
+        color: $color-yellowsin;
+      }
+      img {
+        animation: pulseLegen 2s infinite;
+      }
+    }
+    &--1 {
+      p {
+        color: $color-melrose;
+      }
+      img {
+        animation: pulseEpic 2s infinite;
+      }
+    }
+
+    &__footer {
+      @extend %row;
+      justify-content: space-between;
+    }
+
+    button {
+      margin: 2rem 0;
+      width: 100%;
+      @extend %btn-primary;
+    }
+  }
+}
+
 .title {
   padding: 2rem 0;
   font-weight: 500;

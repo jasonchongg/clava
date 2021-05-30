@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { ethers, providers } from 'ethers';
+import { BigNumber, ethers, providers } from 'ethers';
 import { useWeb3React } from '@web3-react/core';
 import { particleId, IProton } from 'types';
 import { getData } from 'services/subgraph';
@@ -109,7 +109,7 @@ const Web3ConnectProvider: React.FC = ({ children }) => {
   };
 
   const approveDai = async () => {
-    if (chainId !== 42) return window.alert('Please switch to Kovan Network');
+    if (chainId !== 42) return;
     if (!library) return window.alert('Please connect to Web3');
     const kovanAddresses = require('@charged-particles/protocol-subgraph/networks/kovan');
     const signer = library.getSigner(account as string);
@@ -122,7 +122,7 @@ const Web3ConnectProvider: React.FC = ({ children }) => {
   };
 
   const didApproveEnoughDai = async (value: number) => {
-    if (chainId !== 42) return window.alert('Please switch to Kovan Network');
+    if (chainId !== 42) return;
     if (!library) return window.alert('Please connect to Web3');
     const kovanAddresses = require('@charged-particles/protocol-subgraph/networks/kovan');
     const signer = library.getSigner(account as string);
@@ -136,7 +136,7 @@ const Web3ConnectProvider: React.FC = ({ children }) => {
   };
 
   const mintChargedParticle = async (id: particleId) => {
-    if (chainId !== 42) return window.alert('Please switch to Kovan Network');
+    if (chainId !== 42) return;
     if (!library) return window.alert('Please connect to Web3');
     const kovanAddresses = require('@charged-particles/protocol-subgraph/networks/kovan');
     const protonAbi = require('@charged-particles/protocol-subgraph/abis/Proton');
@@ -164,7 +164,7 @@ const Web3ConnectProvider: React.FC = ({ children }) => {
 
   // Signature: currentParticleCharge(address,uint256,string,address)(uint256)
   const getCurrentCharge = async (tokenId: number) => {
-    if (chainId !== 42) return window.alert('Please switch to Kovan Network');
+    if (chainId !== 42) return;
     if (!library) return window.alert('Please connect to Web3');
     const kovanAddresses = require('@charged-particles/protocol-subgraph/networks/kovan');
     const chargedParticlesAbi = require('@charged-particles/protocol-subgraph/abis/ChargedParticles');
@@ -194,7 +194,7 @@ const Web3ConnectProvider: React.FC = ({ children }) => {
   };
 
   const releaseParticle = async (tokenId: number) => {
-    if (chainId !== 42) return window.alert('Please switch to Kovan Network');
+    if (chainId !== 42) return;
     if (!library) return window.alert('Please connect to Web3');
     const kovanAddresses = require('@charged-particles/protocol-subgraph/networks/kovan');
     const chargedParticlesAbi = require('@charged-particles/protocol-subgraph/abis/ChargedParticles');
@@ -228,12 +228,13 @@ const Web3ConnectProvider: React.FC = ({ children }) => {
     // interface: https://docs.charged.fi/charged-particles-protocol/smart-contracts-documentation/contracts/proton-contract#createchargedparticle
     // todo: add a relayer contract (so that uri, price, percent is decided by creator)
     try {
-      const dischargeTx = await chargedParticlesContract.dischargeParticle(
-        account,
+      const dischargeTx = await chargedParticlesContract.energizeParticle(
         kovanAddresses.proton.address, // address contractAddress,
         tokenId, // uint256 tokenId,
-        'aave',
-        daiAddresses[chainId]
+        'generic',
+        '0xb8e2eba3601375c19c1b6e6ef977f9eb18ddf92c',
+        BigNumber.from('10000000000000000'),
+        REFERRER
       );
       console.log(dischargeTx);
     } catch (e) {

@@ -17,9 +17,9 @@ const Experiences = () => {
   };
   return (
     <div>
-      <div className={styles.headline}>Redeem XP for Experiences</div>
+      <div className={styles.headline}>Redeem CCB for Experiences</div>
       <div className={styles.nfts__list}>
-        {myAssets.length ? (
+        {/*myAssets.length ? (
           <div className={styles.row}>
             {myAssets.map((asset, index) => {
               if (index < 2) {
@@ -34,7 +34,7 @@ const Experiences = () => {
             <span>Looks like you're not a member yet.</span>
             <AppLink href={'/memberships'}>Buy Membership</AppLink>
           </div>
-        )}
+        )*/}
         <div className={styles.container}>
           {experiences?.list.map(experience => (
             <ExperienceCard key={experience.title} experience={experience} />

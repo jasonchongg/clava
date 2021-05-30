@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Modal from 'components/Modal';
 import experiences from 'lib/experiences.json';
 import AppLink from 'components/AppLink';
+import Link from 'next/link';
 
 const Memberships = () => {
   const TIERS = Object.keys(nftInfos).map(number => (nftInfos as INFTInfos)[number]);
@@ -69,10 +70,12 @@ const Memberships = () => {
               return (
                 <div>
                   <div className={styles.experiences__experience}>
-                    <img src={experience.image} />
+                    <Link href='/experiences/0xFBE0B6897750e3C7419b74336667E0eCD4bB8e1C'>
+                      <img src={experience.image} />
+                    </Link>
                   </div>
                   <div className={styles.experiences__experience__title}>{experience.title}</div>
-                  <div className={styles.experiences__experience__xp}>{experience.cost.toLocaleString()} XP</div>
+                  <div className={styles.experiences__experience__xp}>{experience.cost.toLocaleString()} CCB</div>
                 </div>
               );
             } else {
