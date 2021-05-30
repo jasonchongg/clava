@@ -40,7 +40,7 @@ const Sidebar = () => {
       name: 'Memberships',
     },
     {
-      path: '/experiences',
+      path: '/experiences/dashboard',
       activeIcon: 'fasStars',
       inactiveIcon: 'falStars',
       name: 'Experiences',

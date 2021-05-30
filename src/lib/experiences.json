@@ -1,12 +1,22 @@
 {
   "list": [
     {
+      "title": "Exclusive ETH Conference",
+      "description": "Get access to MrRoflWaffles exclusive ETH conference stream. You will learn the secrets and insights of Ethereum Dapps.",
+      "image": "/images/exp_conference.png",
+      "cost": 0,
+      "minted": 150,
+      "maxMinted": 200,
+      "id": "0xFBE0B6897750e3C7419b74336667E0eCD4bB8e1C"
+    },
+    {
       "title": "Discord Access",
       "description": "Get access to Crypto Cobains exclusive Discord Channel. You will gain access to secret channels and receive a special Discord role.",
       "image": "/images/exp_discord.png",
       "cost": 50,
       "minted": 0,
-      "maxMinted": 0
+      "maxMinted": 0,
+      "id": "0xFBE0B6897750e3C7419b74336667E0eCD4bB8e1C"
     },
     {
       "title": "Exclusive Livestream",
@@ -14,7 +24,8 @@
       "image": "/images/exp_tshirt.png",
       "cost": 1000,
       "minted": 12,
-      "maxMinted": 50
+      "maxMinted": 50,
+      "id": "0xFBE0B6897750e3C7419b74336667E0eCD4bB8e1C"
     },
     {
       "title": "Get a Shoutout",
